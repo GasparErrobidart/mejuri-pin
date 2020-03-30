@@ -21,7 +21,6 @@ You can check the complete category page [here](mejuri.com/shop/t/type).
 
 **Examples**
 - Bracelets: `http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/bracelets.json`
-- Necklaces: `http://dev1.mejuri.com/api/v1/taxon/collections-by-categories/type/pendants`
 - Earrings: `http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/earrings.json`
 - Engagement: `http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/engagement.json`
 - Pendants: `http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/pendants.json`
