@@ -14,7 +14,7 @@ const LogoWrapper = styled.div`
 const Logo = ()=>{
   return(
     <LogoWrapper>
-      <h1>LOGO</h1>
+      <img src={process.env.PUBLIC_URL + "/mejuri.svg"} alt="Spike Logo"/>
     </LogoWrapper>
   )
 }

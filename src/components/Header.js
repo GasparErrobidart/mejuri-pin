@@ -6,13 +6,7 @@ import Logo                   from './Logo';
 
 const FlexRow = styled.div`
   display:flex;
-  align-content: center;
-  & > *{
-    align-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  justify-content: center;
 `
 
 
@@ -27,7 +21,6 @@ const Header = () =>{
               <Logo/>
             </div>
           </div>
-          <div></div>
         </FlexRow>
       </Container>
     </header>

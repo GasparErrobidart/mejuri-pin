@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     padding:10px;
   }
   header.main-header{
-    background: ${({theme})=> theme.colors.blue};
+    background: ${({theme})=> theme.colors.white};
     color: ${({theme})=> theme.colors.lightGray};
     grid-area: main-header;
     text-align:center;
