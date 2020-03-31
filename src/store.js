@@ -2,13 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import promise from "redux-promise-middleware";
 
-import grids from "./reducers/grids";
-import devices from "./reducers/devices";
+import filter from "./reducers/filter";
 
 export default createStore(
     combineReducers({
-        grids,
-        devices
+        filter
     }),
     {},
     applyMiddleware(logger, promise)

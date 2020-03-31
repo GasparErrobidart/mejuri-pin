@@ -1,38 +1,50 @@
-import React     from 'react'
-// import {connect}                  from 'react-redux'
-//
-import Layout    from '../components/Layout'
-import Container from '../components/Container'
-import ImageGrid      from '../components/ImageGrid'
-import FilterBar      from '../components/FilterBar'
-// import fetch                      from 'isomorphic-unfetch';
-// import { setCachedGrids }         from '../actions/gridActions'
+import React            from 'react'
+import fetch            from 'isomorphic-unfetch'
+import {connect}        from 'react-redux'
 
-function randomRangeInt(min,max){
-  return  parseInt((Math.random() * max - min)+min)
+import Layout           from '../components/Layout'
+import Container        from '../components/Container'
+import ImageGrid        from '../components/ImageGrid'
+import FilterList       from '../components/FilterList'
+import { setFilter }    from '../actions/filterActions'
+
+
+
+class Index extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = {categories : []}
+  }
+
+  async componentDidMount(){
+    const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
+    const data = await res.json();
+    console.log(data)
+
+    this.setState({
+      categories : data
+    })
+  }
+
+  render(){
+    return (
+      <Layout>
+        <Container>
+          <FilterList/>
+          <ImageGrid>
+            { this.state.categories.map(
+              (category,i) => (<div key={category.id}><img src={category.products[0].variant_images[0].attachment_url_medium}/></div>)
+            ) }
+          </ImageGrid>
+        </Container>
+      </Layout>
+    )
+  }
+
 }
 
-function getRandomImage(seed){
-  return `https://picsum.photos/480/640?random=${seed}`
-}
-
-function Index(props){
-  const randomImages = Array(10).fill(null).map( (el,i) => (<img src={getRandomImage(i)}/>) )
-  console.log(randomImages)
-  return (
-    <Layout>
-      <Container>
-        <FilterBar/>
-        <ImageGrid>
-          { randomImages.map( (img,i) => (<div key={i}>{img}</div>)) }
-        </ImageGrid>
-      </Container>
-    </Layout>
-  )
-
-}
-
-
+// NEXT JS
 // Index.getInitialProps = async function() {
 //   const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/bracelets.json');
 //   const data = await res.json();
@@ -44,20 +56,18 @@ function Index(props){
 //   };
 // };
 
-export default Index
+const mapStateToProps = (state) => {
+  return {
+      filter : state.filter
+  };
+};
 
-// const mapStateToProps = (state) => {
-//   return {
-//       gridsCached : state.grids.cached
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         setCachedGrids: (cached) => {
-//             dispatch(setCachedGrids(cached));
-//         }
-//     };
-// };
-//
-// export default connect(mapStateToProps,mapDispatchToProps)(NewGridPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFilter: (id,checked) => {
+            dispatch(setFilter(id,checked));
+        }
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Index);

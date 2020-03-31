@@ -3,8 +3,11 @@ import reset from './reset.js'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  html,body{
+  *{
     font-family : ${({theme})=> theme.fonts.blockTextFamily};
+    letter-spacing: 1px;
+  }
+  html,body{
     background  : ${({theme})=> theme.colors.lightGray};
     color       : ${({theme})=> theme.colors.darkGray};
   }
@@ -36,7 +39,6 @@ const GlobalStyle = createGlobalStyle`
   }
   header.main-header{
     background: ${({theme})=> theme.colors.white};
-    color: ${({theme})=> theme.colors.lightGray};
     grid-area: main-header;
     text-align:center;
   }

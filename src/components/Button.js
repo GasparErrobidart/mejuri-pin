@@ -1,16 +1,18 @@
 import styled     from 'styled-components';
-import Button from '@material-ui/core/Button';
 
-const StyledButton = styled(Button)`
-  &.MuiButton-containedPrimary{
-    font-size: 1em;
-    color: ${({theme})=> theme.colors.white};
-    background-color: ${({theme})=> theme.colors.yellow};
-    text-shadow: 1px 1px 0px ${({theme})=> theme.colors.darkYellow};
+const StyledButton = styled.div`
+  transition: all 300ms ease-in-out;
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 5px 30px;
+  margin: 10px;
+  border: 1px solid ${({theme})=> theme.colors.middleGray };
+  background: transparent;
+  &:hover, &:active{
+    color: ${({theme})=> theme.colors.darkGray };
+    border: 1px solid ${({theme})=> theme.colors.darkGray };
+    background: white;
   }
-  &.MuiButton-containedPrimary:hover{
-    background-color: ${({theme})=> theme.colors.darkYellow};
-  };
 `
 
 export default StyledButton;
