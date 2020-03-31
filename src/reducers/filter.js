@@ -1,19 +1,21 @@
-const filterReducer = (state = [
-  {id: 0,word : "Likes", checked : false},
-  {id: 1,word : "Rings", checked : false},
-  {id: 2,word : "Earrings", checked : false},
-  {id: 3,word : "Necklace", checked : false},
-  {id: 4,word : "Braceletes", checked : false}
-], action) => {
+const filterReducer = (state = [], action) => {
     switch (action.type) {
-      case "SET_FILTER":
-        state = [...state];
-        const {id,checked} = action.payload
-        const index = state.findIndex( item => item.id === id)
-        const item  = {...state[index]}
-        item.checked = checked
-        state[index] = item
+      case "ADD_FILTER":{
+        state               = [...state];
+        let filter          = action.payload
+        let { id }          = filter
+        let existingFilter  = state.find( item => item.id === id)
+        if(!existingFilter) state.push(filter)
         break;
+      }
+      case "REMOVE_FILTER":{
+        state               = [...state]
+        let filter          = action.payload
+        let {id}            = filter
+        let index           = state.findIndex( item => item.id === id)
+        if(index !== -1) state.splice(index,1)
+        break;
+        }
       }
   return state;
 }

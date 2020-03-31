@@ -1,13 +1,33 @@
+// DEPENDENCIES
 import React            from 'react'
+import styled           from 'styled-components'
 import fetch            from 'isomorphic-unfetch'
 import {connect}        from 'react-redux'
-
+// COMPONENTS
 import Layout           from '../components/Layout'
 import Container        from '../components/Container'
 import ImageGrid        from '../components/ImageGrid'
-import FilterList       from '../components/FilterList'
-import { setFilter }    from '../actions/filterActions'
+import ItemBox          from '../components/ItemBox'
+// CONTAINERS
+import FilterList       from '../containers/FilterList'
+// ACTIONS
+import { addCategory }  from '../actions/categoriesActions'
+import { addProduct }   from '../actions/productsActions'
 
+
+const SidebarLayoutVariant = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px){
+    flex-direction: row;
+    & > *:first-child{
+      flex: 0 0 200px
+    }
+    & > *:last-child{
+      flex-grow: 1
+    }
+  }
+`
 
 
 class Index extends React.Component{
@@ -20,24 +40,60 @@ class Index extends React.Component{
   async componentDidMount(){
     const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
     const data = await res.json();
-    console.log(data)
+
+    data.forEach( category =>{
+      category.products.forEach( product =>{
+        if(this.props.products[product.id]){
+          product = {
+            ...product,
+            ...this.props.products[product.id]
+          }
+        }
+        if(!product.categories) product.categories = []
+        product.categories.push(category.id)
+        this.props.addProduct(product)
+      })
+      category.products = category.products.map( product => product.id )
+      this.props.addCategory(category)
+    })
+
 
     this.setState({
       categories : data
     })
   }
 
+  renderProducts(){
+    let { products } = this.props
+    if(this.props.filter.length == 0){
+      products = Object.keys(products).slice(0,20).map( id => products[id])
+    }else{
+      let ids = []
+      this.props.filter.forEach( category =>{
+        ids = ids.concat(category.products)
+      })
+      ids = [... new Set(ids)]
+      products = ids.map( id => products[id] )
+    }
+
+    return products.map(
+     (product,i) => (
+       <ItemBox key={product.id} product={product}/>
+     )
+   )
+  }
+
   render(){
     return (
       <Layout>
-        <Container>
-          <FilterList/>
+        <SidebarLayoutVariant>
+          <div>
+            <FilterList/>
+          </div>
           <ImageGrid>
-            { this.state.categories.map(
-              (category,i) => (<div key={category.id}><img src={category.products[0].variant_images[0].attachment_url_medium}/></div>)
-            ) }
+            {this.renderProducts()}
           </ImageGrid>
-        </Container>
+        </SidebarLayoutVariant>
       </Layout>
     )
   }
@@ -58,15 +114,20 @@ class Index extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-      filter : state.filter
+      filter : state.filter,
+      categories : state.categories.data,
+      products : state.products.data
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (id,checked) => {
-            dispatch(setFilter(id,checked));
-        }
+      addCategory: (category) => {
+          dispatch(addCategory(category));
+      },
+      addProduct: (product) => {
+          dispatch(addProduct(product));
+      }
     };
 };
 

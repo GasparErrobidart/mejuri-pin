@@ -1,6 +1,13 @@
-export function setFilter(id,checked) {
+export function addFilter(filter) {
     return {
-        type: "SET_FILTER",
-        payload: {id,checked}
+        type: "ADD_FILTER",
+        payload: filter
+    };
+}
+
+export function removeFilter(filter) {
+    return {
+        type: "REMOVE_FILTER",
+        payload: filter
     };
 }

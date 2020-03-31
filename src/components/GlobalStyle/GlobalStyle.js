@@ -7,6 +7,12 @@ const GlobalStyle = createGlobalStyle`
     font-family : ${({theme})=> theme.fonts.blockTextFamily};
     letter-spacing: 1px;
   }
+  svg{
+    vertical-align:bottom;
+  }
+  h4{
+    font-size:1.2rem;
+  }
   html,body{
     background  : ${({theme})=> theme.colors.lightGray};
     color       : ${({theme})=> theme.colors.darkGray};
