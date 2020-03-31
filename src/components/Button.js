@@ -2,7 +2,7 @@ import styled     from 'styled-components';
 
 const StyledButton = styled.div`
   transition: all 300ms ease-in-out;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
   padding: 10px 30px;
   margin: 10px;

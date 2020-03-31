@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     vertical-align:bottom;
   }
   h4{
-    font-size:1.2rem;
+    font-size:1.0rem;
   }
   html,body{
     background  : ${({theme})=> theme.colors.lightGray};

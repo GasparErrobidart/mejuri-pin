@@ -14,6 +14,6 @@ export default createStore(
         products,
         likes
     }),
-    {},
-    applyMiddleware(logger, promise)
+    {}
+    // ,applyMiddleware(logger, promise)
 );
