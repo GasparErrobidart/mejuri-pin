@@ -32,6 +32,10 @@ const StyledFilterItem = styled.div`
   background: white;
   padding: 15px 0;
   border-top:1px solid ${({theme})=> theme.colors.lightGray};
+  cursor:pointer;
+  @media (min-width:768px){
+    background:none;
+  }
 `
 
 const FilterItemWrapper = styled.div`
@@ -112,7 +116,7 @@ class FilterList extends React.Component{
   clearFilters(){
     this.props.filter.forEach(
       filter =>{
-        if(filter.checked) this.props.setFilter(filter.id,false)
+        this.props.removeFilter(filter)
       }
     )
   }
@@ -123,6 +127,10 @@ class FilterList extends React.Component{
 
   renderList(){
     let categories = Object.keys(this.props.categories).map( id => this.props.categories[id] )
+    categories.unshift({
+      id   : "liked",
+      name : "Liked"
+    })
     return categories.map(
         (item, i)=> (
           <FilterItem key={item.id} onClick={this.handleClick.bind(this,item)} checked={this.isChecked(item)}>{item.name}</FilterItem>
@@ -131,7 +139,7 @@ class FilterList extends React.Component{
   }
 
   render(){
-    let filterCount = this.props.filter.filter(e=>e.checked).length
+    let filterCount = this.props.filter.length
     let filterDisplay = (
       <StyledFilterItem>
         <Container>
@@ -165,6 +173,7 @@ class FilterList extends React.Component{
 const mapStateToProps = (state) => {
   return {
       filter : state.filter,
+      likes : state.likes,
       categories : state.categories.data,
       products : state.products.data
   };

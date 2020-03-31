@@ -1,18 +1,19 @@
 // DEPENDENCIES
-import React            from 'react'
-import styled           from 'styled-components'
-import fetch            from 'isomorphic-unfetch'
-import {connect}        from 'react-redux'
+import React                    from 'react'
+import styled                   from 'styled-components'
+import fetch                    from 'isomorphic-unfetch'
+import {connect}                from 'react-redux'
 // COMPONENTS
-import Layout           from '../components/Layout'
-import Container        from '../components/Container'
-import ImageGrid        from '../components/ImageGrid'
-import ItemBox          from '../components/ItemBox'
+import Layout                   from '../components/Layout'
+import Container                from '../components/Container'
+import ImageGrid                from '../components/ImageGrid'
+import ItemBox                  from '../components/ItemBox'
 // CONTAINERS
-import FilterList       from '../containers/FilterList'
+import FilterList               from '../containers/FilterList'
 // ACTIONS
-import { addCategory }  from '../actions/categoriesActions'
-import { addProduct }   from '../actions/productsActions'
+import { addCategory }          from '../actions/categoriesActions'
+import { addProduct }           from '../actions/productsActions'
+import { addLike,removeLike }   from '../actions/likeActions'
 
 
 const SidebarLayoutVariant = styled.div`
@@ -63,14 +64,29 @@ class Index extends React.Component{
     })
   }
 
+  isLiked(productId){
+    return this.props.likes.indexOf(productId) !== -1
+  }
+
+  handleLike(productId){
+    if(this.isLiked(productId)){
+      this.props.removeLike(productId);
+    }else{
+      this.props.addLike(productId);
+    }
+  }
+
   renderProducts(){
+    console.log("Rendering products")
     let { products } = this.props
-    if(this.props.filter.length == 0){
+    if(this.props.filter.length === 0){
       products = Object.keys(products).slice(0,20).map( id => products[id])
     }else{
       let ids = []
       this.props.filter.forEach( category =>{
-        ids = ids.concat(category.products)
+        let productIds = category.products
+        if(category.id == "liked") productIds = this.props.likes
+        ids = ids.concat(productIds)
       })
       ids = [... new Set(ids)]
       products = ids.map( id => products[id] )
@@ -78,7 +94,12 @@ class Index extends React.Component{
 
     return products.map(
      (product,i) => (
-       <ItemBox key={product.id} product={product}/>
+       <ItemBox
+        liked={this.isLiked(product.id)}
+        onLike={this.handleLike.bind(this,product.id)}
+        key={product.id}
+        product={product}
+        />
      )
    )
   }
@@ -116,7 +137,8 @@ const mapStateToProps = (state) => {
   return {
       filter : state.filter,
       categories : state.categories.data,
-      products : state.products.data
+      products : state.products.data,
+      likes : state.likes
   };
 };
 
@@ -127,6 +149,12 @@ const mapDispatchToProps = (dispatch) => {
       },
       addProduct: (product) => {
           dispatch(addProduct(product));
+      },
+      addLike: (productId) => {
+          dispatch(addLike(productId));
+      },
+      removeLike: (productId) => {
+          dispatch(removeLike(productId));
       }
     };
 };

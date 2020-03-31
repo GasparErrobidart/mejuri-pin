@@ -1,8 +1,10 @@
 import styled                 from 'styled-components'
-import React                  from 'react';
-import Container              from './Container';
+import React                  from 'react'
+import { FiHeart }            from 'react-icons/fi'
+import { connect }            from 'react-redux'
+
+import Container              from './Container'
 import Logo                   from './Logo';
-import { FiHeart }            from 'react-icons/fi';
 
 
 const FlexRow = styled.div`
@@ -47,13 +49,13 @@ const HeartContainer = styled.div`
 
 
 
-const Header = () =>{
+const Header = ({likes}) =>{
   return(
     <header className="main-header">
       <Container>
         <FlexRow>
           <HeartContainer>
-            <FiHeart/><span>3</span>
+            <FiHeart/><span>{likes.length}</span>
           </HeartContainer>
           <div>
             <div>
@@ -69,4 +71,15 @@ const Header = () =>{
   )
 }
 
-export default Header;
+
+const mapStateToProps = (state) => {
+  return {
+      likes : state.likes
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {};
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

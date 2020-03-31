@@ -18,7 +18,7 @@ const Actions = styled.div`
   }
 `
 
-const ItemBox = ({product})=>{
+const ItemBox = ({product, onLike, liked})=>{
   return (
     <ItemBoxContainer>
       <figure>
@@ -28,7 +28,7 @@ const ItemBox = ({product})=>{
             <h4>{product.name}</h4>
           </figcaption>
           <div>
-            <Button><FiHeart/> <span>Like</span></Button>
+            <Button className={liked ? "active" : ""} onClick={onLike}><FiHeart/> <span>{liked ? "Liked" : "Like"}</span></Button>
           </div>
         </Actions>
       </figure>
