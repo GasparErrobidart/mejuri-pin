@@ -30,7 +30,7 @@ class FilterList extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      open : false
+      open : typeof window == "object" && window.innerWidth >= 768
     }
     this.toggleList = this.toggleList.bind(this)
     this.clearFilters  = this.clearFilters.bind(this)

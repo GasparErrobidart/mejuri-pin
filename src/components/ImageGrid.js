@@ -4,15 +4,14 @@ const gap = "40px"
 
 const ImageGrid = styled.div`
   display:grid;
-  grid-template-columns: repeat( auto-fit, minmax(30vh,1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(30vh,40vh) );
+  justify-content:center;
   grid-gap: ${gap};
   margin: ${gap};
   align-items:flex-start;
+  align-content: start;
   & > *{
     align-self: stretch;
-  }
-  @media (min-width:768px){
-    grid-template-columns: repeat( auto-fit, minmax(30vh,50vh) );
   }
 `;
 

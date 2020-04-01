@@ -4,11 +4,13 @@ import fetch                    from 'isomorphic-unfetch'
 import {connect}                from 'react-redux'
 // COMPONENTS
 import Layout                   from '../components/Layout'
+import HiddenBlock              from '../components/HiddenBlock'
 import ImageGrid                from '../components/ImageGrid'
 import ItemBox                  from '../components/ItemBox'
 import SidebarLayoutVariant     from '../components/SidebarLayoutVariant'
 // CONTAINERS
 import FilterList               from '../containers/FilterList'
+import Spy                      from '../containers/Spy'
 // ACTIONS
 import { addCategory }          from '../actions/categoriesActions'
 import { addProduct }           from '../actions/productsActions'
@@ -35,7 +37,7 @@ class Index extends React.Component{
   async componentDidMount(){
     // I NEED A LIST OF ALL CATEGORIES
     // IF IT WEREN'T FOR THAT I COULD PICK ONLY PRODUCTS AND CATEGORIES RELEVANT
-    const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
+    const res = await fetch('https://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
     const data = await res.json()
     // MAP CATEGORIES AND PRODUCTS AS OBJECTS
     // KEEPING RELATIONSHIPS BETWEEN ENTITIES
@@ -108,9 +110,14 @@ class Index extends React.Component{
           <div>
             <FilterList/>
           </div>
-          <ImageGrid>
-            {this.renderProducts()}
-          </ImageGrid>
+          <div>
+            <ImageGrid>
+              {this.renderProducts()}
+            </ImageGrid>
+            <Spy onProximity={()=> console.log("In proximity")}>
+              <HiddenBlock/>
+            </Spy>
+          </div>
         </SidebarLayoutVariant>
       </Layout>
     )

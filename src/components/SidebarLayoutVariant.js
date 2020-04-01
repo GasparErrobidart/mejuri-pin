@@ -7,7 +7,8 @@ const SidebarLayoutVariant = styled.div`
   @media (min-width: 768px){
     flex-direction: row;
     & > *:first-child{
-      flex: 0 0 200px
+      padding-top:30px;
+      flex: 0 0 250px
     }
     & > *:last-child{
       flex-grow: 1

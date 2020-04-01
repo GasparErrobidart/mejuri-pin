@@ -1,3 +1,16 @@
+# Quick start
+Follow these steps:
+1. Run `npm install`
+2. For production testing `npm run next:build`
+3. then `npm run next:start`
+4. For development just `npm run next:dev`
+
+## Performance
+
+
+
+
+
 # Mejuri PIN
 
 First of all, thanks for your time and take this challenge, we really appreciate it!
