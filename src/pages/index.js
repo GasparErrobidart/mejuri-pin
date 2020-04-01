@@ -3,6 +3,7 @@ import React                    from 'react'
 import styled                   from 'styled-components'
 import fetch                    from 'isomorphic-unfetch'
 import {connect}                from 'react-redux'
+import withRedux             from 'next-redux-wrapper';
 // COMPONENTS
 import Layout                   from '../components/Layout'
 import Container                from '../components/Container'
@@ -14,6 +15,8 @@ import FilterList               from '../containers/FilterList'
 import { addCategory }          from '../actions/categoriesActions'
 import { addProduct }           from '../actions/productsActions'
 import { addLike,removeLike }   from '../actions/likeActions'
+
+const magicCategoryId = "31"
 
 
 const SidebarLayoutVariant = styled.div`
@@ -40,7 +43,8 @@ class Index extends React.Component{
 
   async componentDidMount(){
     const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
-    const data = await res.json();
+    const data = await res.json()
+
 
     data.forEach( category =>{
       category.products.forEach( product =>{
@@ -73,10 +77,9 @@ class Index extends React.Component{
   }
 
   renderProducts(){
-    console.log("Rendering products")
     let { products } = this.props
     if(this.props.filter.length === 0){
-      products = Object.keys(products).slice(0,20).map( id => products[id])
+      products = this.props.categories[magicCategoryId].products.map( id => this.props.products[id])
     }else{
       let ids = []
       this.props.filter.forEach( category =>{
@@ -117,15 +120,6 @@ class Index extends React.Component{
 
 }
 
-// NEXT JS
-Index.getInitialProps = async ({ store, isServer }) => {
-  // store.dispatch(serverRenderClock(isServer))
-  // store.dispatch(addCount())
-  console.log("Is server",isServer,store.getState())
-
-  return { isServer }
-}
-
 const mapStateToProps = (state) => {
   return {
       filter : state.filter,
@@ -134,6 +128,33 @@ const mapStateToProps = (state) => {
       likes : state.likes
   };
 };
+
+// NEXT JS
+Index.getInitialProps = async ({ store, isServer }) => {
+  // const res = await fetch(`http://localhost:${process.env.PORT}/shop_all.json`)
+  // const data = await res.json()
+  const data = require("../public/shop_all.json")
+
+  data.forEach( category =>{
+    if(category.id == magicCategoryId){
+      category.products.forEach( product =>{
+          if(!product.categories) product.categories = []
+          product.categories.push(category.id)
+          store.dispatch(addProduct(product))
+
+      })
+    }
+
+
+    category.products = category.products.map( product => product.id )
+    store.dispatch(addCategory(category))
+  })
+
+
+  return mapStateToProps(store.getState())
+}
+
+
 
 const mapDispatchToProps = (dispatch) => {
     return {

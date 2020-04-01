@@ -8,7 +8,7 @@ import withRedux             from 'next-redux-wrapper';
 import GlobalStyle           from '../components/GlobalStyle/GlobalStyle'
 import theme                 from '../components/GlobalStyle/themes/mejuri-pin'
 
-import store                 from '../store'
+import {initStore}                 from '../store'
 
 
 
@@ -37,7 +37,7 @@ class CustomNextApp extends App {
 
 
 //makeStore function that returns a new store for every request
-const makeStore = () => store;
+const makeStore = initStore;
 
 //withRedux wrapper that passes the store to the App Component
 export default withRedux(makeStore)(CustomNextApp);
