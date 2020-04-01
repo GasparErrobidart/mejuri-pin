@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React    from 'react'
+import styled   from 'styled-components'
 
 
 const LogoWrapper = styled.div`
@@ -14,7 +14,7 @@ const LogoWrapper = styled.div`
 const Logo = ()=>{
   return(
     <LogoWrapper>
-      <img src={process.env.PUBLIC_URL + "/mejuri.svg"} alt="Mejuri Logo"/>
+      <img src="/mejuri.svg" alt="Mejuri Logo"/>
     </LogoWrapper>
   )
 }

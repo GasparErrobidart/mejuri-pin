@@ -58,10 +58,6 @@ class Index extends React.Component{
       this.props.addCategory(category)
     })
 
-
-    this.setState({
-      categories : data
-    })
   }
 
   isLiked(productId){
@@ -122,16 +118,13 @@ class Index extends React.Component{
 }
 
 // NEXT JS
-// Index.getInitialProps = async function() {
-//   const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/bracelets.json');
-//   const data = await res.json();
-//
-//   console.log("Returning data", data[0].name)
-//
-//   return {
-//     categories: data
-//   };
-// };
+Index.getInitialProps = async ({ store, isServer }) => {
+  // store.dispatch(serverRenderClock(isServer))
+  // store.dispatch(addCount())
+  console.log("Is server",isServer,store.getState())
+
+  return { isServer }
+}
 
 const mapStateToProps = (state) => {
   return {
