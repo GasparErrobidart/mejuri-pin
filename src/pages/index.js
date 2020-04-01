@@ -32,12 +32,14 @@ class Index extends React.Component{
 
   constructor(props){
     super(props)
+    const { items = [] } = props
+    this.state = { maxItems : 10 , items , remainingItems : 0 }
   }
 
   async componentDidMount(){
     // I NEED A LIST OF ALL CATEGORIES
     // IF IT WEREN'T FOR THAT I COULD PICK ONLY PRODUCTS AND CATEGORIES RELEVANT
-    const res = await fetch('https://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
+    const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
     const data = await res.json()
     // MAP CATEGORIES AND PRODUCTS AS OBJECTS
     // KEEPING RELATIONSHIPS BETWEEN ENTITIES
@@ -56,6 +58,14 @@ class Index extends React.Component{
       category.products = category.products.map( product => product.id )
       this.props.addCategory(category)
     })
+
+    this.processItemList()
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.filter.length != this.props.filter.length){
+      this.processItemList({maxItems : 10})
+    }
   }
 
   // SIMPLE BOOLEAN CHECK
@@ -72,36 +82,66 @@ class Index extends React.Component{
     }
   }
 
-  renderProducts(){
-    // GET THE PRODUCTS FROM THE STORE
-    let { products } = this.props
-    // IF NO FILTER IS ACTIVE SHOW ALL PRODUCTS FOR ONE CATEGORY
+
+  processItemList(){
+    let items = []
+    let ids   = []
+    let remainingItems;
+
     if(this.props.filter.length === 0){
-      products = this.props.categories[magicCategoryId].products.map( id => this.props.products[id])
+      // IF NO FILTER IS ACTIVE SHOW ALL PRODUCTS FOR ONE CATEGORY
+      ids = this.props.categories[magicCategoryId].products
+              .sort()
+              .concat(Object.keys(this.props.products))
+
     }else{
       // IF A FILTER IS ACTIVE GATHER ALL PRODUCT IDS MATCHING THE FILTERS
-      let ids = []
       this.props.filter.forEach( category =>{
         let productIds = category.products
         // "liked" IS A SPECIAL CASE
         if(category.id == "liked") productIds = this.props.likes
         ids = ids.concat(productIds)
       })
-      ids = [... new Set(ids)]
-      products = ids.map( id => products[id] )
     }
 
-    return products.map(
+
+    ids = [...new Set(ids)]
+
+    let limit = ids.length
+    if(limit > this.state.maxItems) limit = this.state.maxItems
+
+    remainingItems = ids.length - limit
+
+    items = ids.slice(0,limit).map( id => this.props.products[id] )
+
+    this.setState({ ...this.state , items, remainingItems })
+  }
+
+
+  renderProducts(){
+    // GET THE PRODUCTS FROM THE STORE
+    let items = this.state.items
+
+    return items.map(
      (product,i) => (
        <ItemBox
         liked={this.isLiked(product.id)}
         onLike={this.handleLike.bind(this,product.id)}
-        key={product.id}
+        key={`${product.id}${product.slug}`}
         product={product}
         />
      )
    )
   }
+
+
+  loadMore(){
+    if(this.state.remainingItems > 0){
+      this.setState( prevState => ({ maxItems : prevState.maxItems+10}) )
+      this.processItemList()
+    }
+  }
+
 
   render(){
     return (
@@ -114,7 +154,9 @@ class Index extends React.Component{
             <ImageGrid>
               {this.renderProducts()}
             </ImageGrid>
-            <Spy onProximity={()=> console.log("In proximity")}>
+            <Spy
+              onProximity={this.loadMore.bind(this)}
+              proximityThreshold={100}>
               <HiddenBlock/>
             </Spy>
           </div>
@@ -147,7 +189,6 @@ Index.getInitialProps = async ({ store, isServer }) => {
           if(!product.categories) product.categories = []
           product.categories.push(category.id)
           store.dispatch(addProduct(cleanProduct(product)))
-
       })
     }
 
@@ -156,7 +197,13 @@ Index.getInitialProps = async ({ store, isServer }) => {
     store.dispatch(addCategory(category))
   })
 
-  return mapStateToProps(store.getState())
+  const state = store.getState()
+
+  let nextProps = {
+    items : Object.keys(state.products.data).sort().map( id=> state.products.data[id])
+  }
+
+  return nextProps
 }
 
 const mapDispatchToProps = (dispatch) => {

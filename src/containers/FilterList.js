@@ -42,7 +42,6 @@ class FilterList extends React.Component{
   }
 
   handleClick(filter){
-    console.log("Handling click")
     if(!this.isChecked(filter)){
       this.props.addFilter(filter)
     }else{
