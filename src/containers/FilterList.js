@@ -1,83 +1,28 @@
 // DEPENDENCIES
-import styled              from 'styled-components'
-import React               from 'react'
-import {connect}           from 'react-redux'
+import styled               from 'styled-components'
+import React                from 'react'
+import {connect}            from 'react-redux'
 import {
-  FiCheck,
   FiChevronDown,
   FiChevronUp,
   FiX
-}                          from 'react-icons/fi';
+}/*---------------------->*/from 'react-icons/fi';
 
 // COMPONENTS
-import Container           from '../components/Container'
+import Container            from '../components/Container'
+import FlexColumn           from '../components/FilterList/FlexColumn'
+import FlexRow              from '../components/FilterList/FlexRow'
+import RemoveFilterButton   from '../components/FilterList/RemoveFilterButton'
+import FilterItem           from '../components/FilterList/FilterItem'
+import StyledFilterItem     from '../components/FilterList/StyledFilterItem'
 // ACTIONS
-import { addFilter, removeFilter }       from '../actions/filterActions'
+import {
+  addFilter,
+  removeFilter
+}/*---------------------->*/from '../actions/filterActions'
 
-const FlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap:wrap;
-`
 
-const FlexRow = styled.div`
-  display: flex;
-  & > *:first-child{
-    flex-grow:1;
-  }
-`
 
-const StyledFilterItem = styled.div`
-  background: white;
-  padding: 15px 0;
-  border-top:1px solid ${({theme})=> theme.colors.lightGray};
-  cursor:pointer;
-  @media (min-width:768px){
-    background:none;
-  }
-`
-
-const FilterItemWrapper = styled.div`
-  display: flex;
-  padding-left: 30px;
-  &:hover,&:active{
-    border-color: ${({theme})=> theme.colors.middleGray}
-  }
-
-  & *{
-    transition: all 200ms ease-in;
-    color : ${({checked,theme}) => checked ? theme.colors.darkGray : theme.colors.darkMiddleGray}
-  }
-
-  & div:first-child{
-    overflow: hidden;
-    flex: 0 0 ${({checked}) => checked ? "25px" : 0};
-    height: 15px;
-  }
-`
-
-const FilterItem = (props)=>{
-  const {children,checked} = props
-  let icon = checked ? <FiCheck/> : null
-  return(
-    <StyledFilterItem {...props}>
-      <FilterItemWrapper {...props}>
-          <div>
-            {icon}
-          </div>
-          <div>
-            {children}
-          </div>
-      </FilterItemWrapper>
-    </StyledFilterItem>
-  )
-}
-
-const RemoveFilterButton = styled.div`
-  color: ${({theme})=> theme.colors.darkMiddleGray};
-  margin-left: auto;
-`
 
 
 class FilterList extends React.Component{
@@ -167,8 +112,6 @@ class FilterList extends React.Component{
   }
 
 }
-
-
 
 const mapStateToProps = (state) => {
   return {

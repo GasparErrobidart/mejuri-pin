@@ -8,9 +8,7 @@ import withRedux             from 'next-redux-wrapper';
 import GlobalStyle           from '../components/GlobalStyle/GlobalStyle'
 import theme                 from '../components/GlobalStyle/themes/mejuri-pin'
 
-import {initStore}                 from '../store'
-
-
+import { initStore }         from '../store'
 
 class CustomNextApp extends App {
 

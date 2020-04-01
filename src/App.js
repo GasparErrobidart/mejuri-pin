@@ -1,3 +1,4 @@
+// THIS IS A SECOND IMPLEMENTATION THAT DOESN'T USE NEXT.JS
 import React                                      from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ThemeProvider }                          from 'styled-components'

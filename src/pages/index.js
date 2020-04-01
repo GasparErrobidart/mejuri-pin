@@ -1,53 +1,44 @@
 // DEPENDENCIES
 import React                    from 'react'
-import styled                   from 'styled-components'
 import fetch                    from 'isomorphic-unfetch'
 import {connect}                from 'react-redux'
-import withRedux             from 'next-redux-wrapper';
 // COMPONENTS
 import Layout                   from '../components/Layout'
-import Container                from '../components/Container'
 import ImageGrid                from '../components/ImageGrid'
 import ItemBox                  from '../components/ItemBox'
+import SidebarLayoutVariant     from '../components/SidebarLayoutVariant'
 // CONTAINERS
 import FilterList               from '../containers/FilterList'
 // ACTIONS
 import { addCategory }          from '../actions/categoriesActions'
 import { addProduct }           from '../actions/productsActions'
 import { addLike,removeLike }   from '../actions/likeActions'
-//HELPERS
+// HELPERS
 import cleanProduct             from '../helpers/cleanProduct'
 
+// I HAND PICKED THIS CATEGORY FOR BOOTSTRAPING
+// SERVER SIDE RENDERING AS IT HAS 10 ITEMS WHICH ENOUGH FOR A CLIENT
+// WITH CONNECTIVITY ISSUES
 const magicCategoryId = "31"
 
 
-const SidebarLayoutVariant = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px){
-    flex-direction: row;
-    & > *:first-child{
-      flex: 0 0 200px
-    }
-    & > *:last-child{
-      flex-grow: 1
-    }
-  }
-`
-
+/*
+   - Index Page Component
+*/
 
 class Index extends React.Component{
 
   constructor(props){
     super(props)
-    this.state = {categories : []}
   }
 
   async componentDidMount(){
+    // I NEED A LIST OF ALL CATEGORIES
+    // IF IT WEREN'T FOR THAT I COULD PICK ONLY PRODUCTS AND CATEGORIES RELEVANT
     const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
     const data = await res.json()
-
-
+    // MAP CATEGORIES AND PRODUCTS AS OBJECTS
+    // KEEPING RELATIONSHIPS BETWEEN ENTITIES
     data.forEach( category =>{
       category.products.forEach( product =>{
         if(this.props.products[product.id]){
@@ -63,14 +54,14 @@ class Index extends React.Component{
       category.products = category.products.map( product => product.id )
       this.props.addCategory(category)
     })
-
-
   }
 
+  // SIMPLE BOOLEAN CHECK
   isLiked(productId){
     return this.props.likes.indexOf(productId) !== -1
   }
 
+  // ADD OR REMOVE LIKES FROM THE STORE
   handleLike(productId){
     if(this.isLiked(productId)){
       this.props.removeLike(productId);
@@ -80,13 +71,17 @@ class Index extends React.Component{
   }
 
   renderProducts(){
+    // GET THE PRODUCTS FROM THE STORE
     let { products } = this.props
+    // IF NO FILTER IS ACTIVE SHOW ALL PRODUCTS FOR ONE CATEGORY
     if(this.props.filter.length === 0){
       products = this.props.categories[magicCategoryId].products.map( id => this.props.products[id])
     }else{
+      // IF A FILTER IS ACTIVE GATHER ALL PRODUCT IDS MATCHING THE FILTERS
       let ids = []
       this.props.filter.forEach( category =>{
         let productIds = category.products
+        // "liked" IS A SPECIAL CASE
         if(category.id == "liked") productIds = this.props.likes
         ids = ids.concat(productIds)
       })
@@ -154,11 +149,8 @@ Index.getInitialProps = async ({ store, isServer }) => {
     store.dispatch(addCategory(category))
   })
 
-
   return mapStateToProps(store.getState())
 }
-
-
 
 const mapDispatchToProps = (dispatch) => {
     return {

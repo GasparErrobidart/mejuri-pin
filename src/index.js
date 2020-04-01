@@ -1,3 +1,4 @@
+// THIS IS A SECOND IMPLEMENTATION THAT DOESN'T USE NEXT.JS
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

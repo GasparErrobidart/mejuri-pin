@@ -1,7 +1,6 @@
 import React    from 'react'
 import styled   from 'styled-components'
 
-
 const LogoWrapper = styled.div`
   height: 50px;
   padding: 5px 0;
