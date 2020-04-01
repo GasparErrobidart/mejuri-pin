@@ -1,6 +1,6 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Main, NextScript } from 'next/document'
 // Import styled components ServerStyleSheet
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -23,6 +23,8 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <title>Mejuri Pin</title>
+          <script src="/picture-perfect.min.js"></script>
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
         </Head>

@@ -2,7 +2,7 @@ import styled                   from 'styled-components'
 
 const SidebarLayoutVariant = styled.div`
   display: flex;
-  align-items:start;
+  align-items:stretch;
   flex-direction: column;
   @media (min-width: 768px){
     flex-direction: row;
