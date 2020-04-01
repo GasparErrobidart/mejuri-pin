@@ -8,6 +8,9 @@ const ImageGrid = styled.div`
   grid-gap: ${gap};
   margin: ${gap};
   align-items:flex-start;
+  & > *{
+    align-self: stretch;
+  }
   @media (min-width:768px){
     grid-template-columns: repeat( auto-fit, minmax(30vh,50vh) );
   }

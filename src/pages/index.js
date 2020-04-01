@@ -15,6 +15,8 @@ import FilterList               from '../containers/FilterList'
 import { addCategory }          from '../actions/categoriesActions'
 import { addProduct }           from '../actions/productsActions'
 import { addLike,removeLike }   from '../actions/likeActions'
+//HELPERS
+import cleanProduct             from '../helpers/cleanProduct'
 
 const magicCategoryId = "31"
 
@@ -56,11 +58,12 @@ class Index extends React.Component{
         }
         if(!product.categories) product.categories = []
         product.categories.push(category.id)
-        this.props.addProduct(product)
+        this.props.addProduct(cleanProduct(product))
       })
       category.products = category.products.map( product => product.id )
       this.props.addCategory(category)
     })
+
 
   }
 
@@ -129,18 +132,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-// NEXT JS
+// NEXT JS - SSR
+// THIS METHOD IS USED FOR GETTING INITIAL STORE
+// AND SENDING THE RESULT TO THE CLIENT
 Index.getInitialProps = async ({ store, isServer }) => {
-  // const res = await fetch(`http://localhost:${process.env.PORT}/shop_all.json`)
-  // const data = await res.json()
-  const data = require("../public/shop_all.json")
+  const res = await fetch(`http://localhost:${process.env.PORT || 3000}/shop_all.json`)
+  const data = await res.json()
 
   data.forEach( category =>{
     if(category.id == magicCategoryId){
       category.products.forEach( product =>{
           if(!product.categories) product.categories = []
           product.categories.push(category.id)
-          store.dispatch(addProduct(product))
+          store.dispatch(addProduct(cleanProduct(product)))
 
       })
     }
