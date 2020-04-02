@@ -13,6 +13,7 @@ import Container            from '../components/Container'
 import FlexColumn           from '../components/FilterList/FlexColumn'
 import FlexRow              from '../components/FilterList/FlexRow'
 import RemoveFilterButton   from '../components/FilterList/RemoveFilterButton'
+import FilterListScroll     from '../components/FilterList/FilterListScroll'
 import FilterItem           from '../components/FilterList/FilterItem'
 import StyledFilterItem     from '../components/FilterList/StyledFilterItem'
 // ACTIONS
@@ -104,7 +105,9 @@ class FilterList extends React.Component{
       <FlexColumn>
       {filterDisplay}
         { this.state.open &&
-          this.renderList()
+          <FilterListScroll>
+            {this.renderList()}
+          </FilterListScroll>
         }
       </FlexColumn>
     )

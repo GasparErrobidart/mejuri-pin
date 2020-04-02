@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     max-width:100%;
   }
   .app-wrapper{
+    padding-top:100px;
     display   : grid;
     grid-template-columns: 1fr;
     grid-template-rows : auto 1fr auto;
@@ -37,6 +38,11 @@ const GlobalStyle = createGlobalStyle`
       "main-header"
       "main-content"
       "main-footer";
+  }
+  @media (min-width:768px){
+    .app-wrapper{
+      padding-top:60px;
+    }
   }
   input{
     background: ${({theme})=> theme.colors.lightGray};
@@ -49,6 +55,10 @@ const GlobalStyle = createGlobalStyle`
     background: ${({theme})=> theme.colors.white};
     grid-area: main-header;
     text-align:center;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
   }
   main.main-content{
     grid-area: main-content;

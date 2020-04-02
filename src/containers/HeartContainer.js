@@ -8,6 +8,24 @@ const HeartContainerWrapper = styled.div`
   font-size: 30px;
   text-align: left;
   position: relative;
+  & *[animated-heart]{
+    color: red;
+    position:absolute;
+    opacity:0;
+  }
+  & *[animated-heart].animating {
+    animation: pop 1s;
+  }
+  @keyframes pop {
+    from {
+      opacity: 1;
+      transform: scale(1.0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
   & > span{
     position: absolute;
     font-size: 12px;
@@ -25,11 +43,41 @@ const HeartContainerWrapper = styled.div`
   }
 `
 
-const HeartContainer = ({likes})=>(
-  <HeartContainerWrapper>
-    <FiHeart/><span>{likes.length}</span>
-  </HeartContainerWrapper>
-)
+class HeartContainer extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = { animating : false }
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.likes.length < this.props.likes.length){
+      this.animateHeart()
+    }
+  }
+
+  animateHeart(){
+    this.setState({ animating : true })
+  }
+
+  render(){
+    const {likes} = this.props
+    return (
+      <HeartContainerWrapper
+        onClick={() => this.setState({ animating: true })}
+        >
+        <div
+          animated-heart="true"
+          onAnimationEnd={() => this.setState({ animating: false })}
+          className={this.state.animating ? 'animating' : ''}
+          >
+          <FiHeart/>
+        </div>
+        <FiHeart/><span>{likes.length}</span>
+      </HeartContainerWrapper>
+    )
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
