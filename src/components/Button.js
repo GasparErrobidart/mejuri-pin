@@ -4,7 +4,7 @@ const StyledButton = styled.div`
   transition: all 300ms ease-in-out;
   font-size: 1rem;
   font-weight: 300;
-  padding: 10px 30px;
+  padding: 10px 10px;
   margin: 10px;
   color: ${({theme})=> theme.colors.darkGray};
   box-shadow: 0px 2px 4px #aaa;
@@ -15,6 +15,9 @@ const StyledButton = styled.div`
     box-shadow: 0px 0px 2px #aaa;
     color : ${({theme})=> theme.colors.darkMiddleGray};
     background : ${({theme})=> theme.colors.lightGray};
+  }
+  @media (min-width:768px){
+    padding: 10px 30px;
   }
 `
 
