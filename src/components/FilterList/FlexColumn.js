@@ -10,6 +10,8 @@ const FlexColumn = styled.div`
   top:60px;
   left:0;
   width:100%;
+  transition: opacity 300ms ease-in;
+  opacity: ${({disabled})=> disabled ? "0.2" : "1.0"};
   @media (min-width:768px){
     position:static;
     top:auto;

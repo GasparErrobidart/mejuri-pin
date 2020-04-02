@@ -33,7 +33,7 @@ class Index extends React.Component{
   constructor(props){
     super(props)
     const { items = [] } = props
-    this.state = { maxItems : 10 , remainingItems : 0 }
+    this.state = { maxItems : 10 , remainingItems : 0 , dataReady : false}
   }
 
   async componentDidMount(){
@@ -59,6 +59,8 @@ class Index extends React.Component{
       this.props.addCategory(category)
     })
 
+    this.setState({ dataReady : true })
+
   }
 
   componentDidUpdate(prevProps){
@@ -83,7 +85,6 @@ class Index extends React.Component{
 
 
   getItemList(){
-    console.log("Getting item list",this.state)
     let items = []
     let ids   = []
     let remainingItems;
@@ -146,7 +147,7 @@ class Index extends React.Component{
       <Layout>
         <SidebarLayoutVariant>
           <div>
-            <FilterList/>
+            <FilterList dataReady={this.state.dataReady}/>
           </div>
           <div>
             <ImageGrid>
@@ -197,11 +198,6 @@ Index.getInitialProps = async ({ store, isServer }) => {
 
   const state = store.getState()
 
-  let nextProps = {
-    items : Object.keys(state.products.data).sort().map( id=> state.products.data[id])
-  }
-
-  return nextProps
 }
 
 const mapDispatchToProps = (dispatch) => {

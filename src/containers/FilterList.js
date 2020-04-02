@@ -37,16 +37,14 @@ class FilterList extends React.Component{
     this.clearFilters  = this.clearFilters.bind(this)
   }
 
-  changeFilter(filter){
-    let filters = [...this.state.filters]
-    filters.find()
-  }
 
   handleClick(filter){
-    if(!this.isChecked(filter)){
-      this.props.addFilter(filter)
-    }else{
-      this.props.removeFilter(filter)
+    if(this.props.dataReady){
+      if(!this.isChecked(filter)){
+        this.props.addFilter(filter)
+      }else{
+        this.props.removeFilter(filter)
+      }
     }
   }
 
@@ -59,11 +57,13 @@ class FilterList extends React.Component{
   }
 
   clearFilters(){
-    this.props.filter.forEach(
-      filter =>{
-        this.props.removeFilter(filter)
-      }
-    )
+    if(this.props.dataReady){
+      this.props.filter.forEach(
+        filter =>{
+          this.props.removeFilter(filter)
+        }
+      )
+    }
   }
 
   isChecked(category){
@@ -102,7 +102,7 @@ class FilterList extends React.Component{
       </StyledFilterItem>
     )
     return(
-      <FlexColumn>
+      <FlexColumn disabled={!this.props.dataReady}>
       {filterDisplay}
         { this.state.open &&
           <FilterListScroll>
