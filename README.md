@@ -5,6 +5,11 @@ Follow these steps:
 3. then `npm run next:start`
 4. For development just `npm run next:dev`
 
+
+## Lighthouse report
+![Report preview](https://github.com/GasparErrobidart/mejuri-pin/blob/master/lighthouse-report.png)
+You can see the full report [here](https://github.com/GasparErrobidart/mejuri-pin/blob/master/lighthouse-report.pdf)
+
 ## Performance
 
 

@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <title>Mejuri Pin</title>
           <meta name='application-name' content='Mejuri Pin App' />
@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
           <meta name='msapplication-tap-highlight' content='no' />
           <meta name='theme-color' content='#000000' />
           <link rel='manifest' href='/manifest.json' />
-          <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover' />
+          <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover' />
           <script src="/picture-perfect.min.js"></script>
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
