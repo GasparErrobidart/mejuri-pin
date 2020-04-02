@@ -27,7 +27,7 @@ Some of the strategies that were implemented regarding performance and UX:
 - Infinite scroll: rendering only 10 items reducing the initial page load.
 - Server side rendering: this drastically reduces the time in which the page shows meaningful content. Also adds to a more accurate SEO.
 - Lazy load and `srcset`: I implemented my own library [picture-perfect](https://github.com/GasparErrobidart/picture-perfect) which loads seamlessly full size images using lazy load on the `srcset` attribute. Also it determines with mathematical precision the correct `sizes` attribute for a more efficent use of this technique.
-- Data transfer has been reduced as much as possible.
+- Data transfer has been reduced as much as possible. For example by removing attributes that are not necessary.
 - Progressive Web Application (PWA): I used service workers for making most of the necessary assets required for offline rendering available.
 
 ## TODO
