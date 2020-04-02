@@ -6,6 +6,7 @@ const FlexColumn = styled.div`
   justify-content: center;
   flex-wrap:wrap;
   position:fixed;
+  z-index:1;
   top:60px;
   left:0;
   width:100%;
