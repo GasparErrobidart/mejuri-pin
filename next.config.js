@@ -3,7 +3,7 @@ const withPWA = require('next-pwa')
 module.exports = withPWA({
   pwa: {
     dest: 'public',
-    disable : !process.env.PRODUCTION,
+    disable : process.env.NODE_ENV != "production",
     include : ['shop_all.json']
   }
 })
