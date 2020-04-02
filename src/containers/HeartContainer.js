@@ -14,7 +14,7 @@ const HeartContainerWrapper = styled.div`
     opacity:0;
   }
   & *[animated-heart].animating {
-    animation: pop 1s;
+    animation: pop 700ms;
   }
   @keyframes pop {
     from {

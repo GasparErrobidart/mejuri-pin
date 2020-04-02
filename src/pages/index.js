@@ -33,7 +33,7 @@ class Index extends React.Component{
   constructor(props){
     super(props)
     const { items = [] } = props
-    this.state = { maxItems : 10 , items , remainingItems : 0 }
+    this.state = { maxItems : 10 , remainingItems : 0 }
   }
 
   async componentDidMount(){
@@ -59,12 +59,11 @@ class Index extends React.Component{
       this.props.addCategory(category)
     })
 
-    this.processItemList()
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps){
     if(prevProps.filter.length != this.props.filter.length){
-      this.processItemList({maxItems : 10})
+      this.setState( prevState => ({ maxItems : 10}) )
     }
   }
 
@@ -83,7 +82,8 @@ class Index extends React.Component{
   }
 
 
-  processItemList(){
+  getItemList(){
+    console.log("Getting item list",this.state)
     let items = []
     let ids   = []
     let remainingItems;
@@ -114,13 +114,14 @@ class Index extends React.Component{
 
     items = ids.slice(0,limit).map( id => this.props.products[id] )
 
-    this.setState({ ...this.state , items, remainingItems })
+    return items
+
   }
 
 
   renderProducts(){
     // GET THE PRODUCTS FROM THE STORE
-    let items = this.state.items
+    let items = this.getItemList()
 
     return items.map(
      (product,i) => (
@@ -136,10 +137,7 @@ class Index extends React.Component{
 
 
   loadMore(){
-    if(this.state.remainingItems > 0){
-      this.setState( prevState => ({ maxItems : prevState.maxItems+10}) )
-      this.processItemList()
-    }
+    this.setState( prevState => ({ maxItems : prevState.maxItems+10}) )
   }
 
 

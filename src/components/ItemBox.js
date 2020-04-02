@@ -6,6 +6,20 @@ import Button           from './Button'
 
 const ItemBoxContainer = styled.div`
   background: ${({theme})=> theme.colors.white};
+
+  &.animating {
+    animation: pop-in 500ms;
+  }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(1.2)
+    }
+    to {
+      opacity: 1;
+      transform: scale(1.0)
+    }
+  }
   & img{
     width:100%;
     opacity:0;
@@ -31,7 +45,7 @@ class ItemBox extends React.Component {
 
   constructor(props){
     super(props)
-    this.state = { started : false }
+    this.state = { started : false , animating : false }
     this.image = React.createRef()
   }
 
@@ -44,6 +58,7 @@ class ItemBox extends React.Component {
     if(!this.state.started){
       this.start()
     }
+    this.setState({ animating: true })
   }
 
   getSrcSet(images){
@@ -58,7 +73,10 @@ class ItemBox extends React.Component {
   render(){
     const {product, onLike, liked} = this.props
     return (
-      <ItemBoxContainer>
+      <ItemBoxContainer
+      onAnimationEnd={() => this.setState({ animating: false })}
+      className={this.state.animating ? 'animating' : ''}
+      >
         <figure>
           <img
           ref={this.image}
