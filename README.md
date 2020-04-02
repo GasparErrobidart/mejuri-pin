@@ -1,22 +1,47 @@
-# Quick start
-Follow these steps:
-1. Run `npm install`
-2. For production testing `npm run next:build`
-3. then `npm run next:start`
-4. For development just `npm run next:dev`
-
+# Mejuri PIN
 
 ## Lighthouse report
 ![Report preview](https://github.com/GasparErrobidart/mejuri-pin/blob/master/lighthouse-report.png)
 You can see the full report [here](https://github.com/GasparErrobidart/mejuri-pin/blob/master/lighthouse-report.pdf)
 
-## Performance
+## Starting the project
+Follow these steps:
+1. Run `npm install`
+2. For a production build `npm run next:build`
+3. then `npm run next:start`
+4. For development just `npm run next:dev`
+
+## Stack
+This project uses:
+- React
+- Redux
+- NextJS
+- WorkBox
+- Styled Components
+- Jest
+- And many other related libraries
 
 
+## Feature
+Some of the strategies that were implemented regarding performance and UX:
+- Infinite scroll: rendering only 10 items reducing the initial page load.
+- Server side rendering: this drastically reduces the time in which the page shows meaningful content. Also adds to a more accurate SEO.
+- Lazy load and `srcset`: I implemented my own library [picture-perfect](https://github.com/GasparErrobidart/picture-perfect) which loads seamlessly full size images using lazy load on the `srcset` attribute. Also it determines with mathematical precision the correct `sizes` attribute for a more efficent use of this technique.
+- Data transfer has been reduced as much as possible.
+- Progressive Web Application (PWA): I used service workers for making most of the necessary assets required for offline rendering available.
+
+## TODO
+
+- Implement HTTPS and HTTP2 for performance and security.
+- Add more icons and information to the PWA manifest.
+- Reduce the data requested to the API to the minimum. (+compression would be fantastic)
+- The filter UX can be improved by adding gestures, other interactions and better feedback.
+- The infinite scroll is fine but for cases where the filter has a bunch of results it should implement pagination to not overflow the device memory with bitmaps and DOM elements in memory.
+- Persistent URL filters would minimize the amount of data requested and improve the UX. (These last 2 items could not be achieved because for an initial load it always needs all the categories to render the filter, with a real API it can be done)
+- The general UI can be improved further, many many details could be polished in terms of spacing, alignment and "responsiveness".
 
 
-
-# Mejuri PIN
+# Mejuri PIN: the challenge
 
 First of all, thanks for your time and take this challenge, we really appreciate it!
 We gonna try to make this challenge and opportunity to see your skills and also interesting for you.
