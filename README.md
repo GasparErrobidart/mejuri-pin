@@ -22,7 +22,7 @@ This project uses:
 - And many other related libraries
 
 
-## Feature
+## Features & strategies
 Some of the strategies that were implemented regarding performance and UX:
 - Infinite scroll: rendering only 10 items reducing the initial page load.
 - Server side rendering: this drastically reduces the time in which the page shows meaningful content. Also adds to a more accurate SEO.
