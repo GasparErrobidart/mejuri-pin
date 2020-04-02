@@ -2,12 +2,15 @@ import styled                 from 'styled-components'
 import React                  from 'react'
 import { FiHeart }            from 'react-icons/fi'
 import { connect }            from 'react-redux'
+//ACTIONS
+import {addFilter}            from '../actions/filterActions'
 
 const HeartContainerWrapper = styled.div`
   font-family: ${({theme})=> theme.fonts.blockTextFamily};
   font-size: 30px;
   text-align: left;
   position: relative;
+  cursor:pointer;
   & *[animated-heart]{
     color: red;
     position:absolute;
@@ -60,11 +63,19 @@ class HeartContainer extends React.Component{
     this.setState({ animating : true })
   }
 
+  handleClick(){
+    this.props.addFilter({
+      id   : "liked",
+      name : "Liked"
+    })
+    this.setState({ animating: true })
+  }
+
   render(){
     const {likes} = this.props
     return (
       <HeartContainerWrapper
-        onClick={() => this.setState({ animating: true })}
+        onClick={this.handleClick.bind(this)}
         >
         <div
           animated-heart="true"
@@ -85,4 +96,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,null)(HeartContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addFilter: (filter) => {
+          dispatch(addFilter(filter));
+      }
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(HeartContainer);

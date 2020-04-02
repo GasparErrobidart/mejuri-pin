@@ -39,7 +39,7 @@ class Index extends React.Component{
   async componentDidMount(){
     // I NEED A LIST OF ALL CATEGORIES
     // IF IT WEREN'T FOR THAT I COULD PICK ONLY PRODUCTS AND CATEGORIES RELEVANT
-    const res = await fetch('http://mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
+    const res = await fetch('//mejuri-fe-challenge.s3-website-us-east-1.amazonaws.com/shop_all.json');
     const data = await res.json()
     // MAP CATEGORIES AND PRODUCTS AS OBJECTS
     // KEEPING RELATIONSHIPS BETWEEN ENTITIES
