@@ -58,7 +58,21 @@ exports[`FilterList component Should render 1`] = `
   border-top: 1px solid #F3F3F3;
 }
 
+.c1 cursor:pointer @media (min-width:768px) {
+  background: none;
+}
+
 .c5 {
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid #F3F3F3;
+}
+
+.c5 cursor:default @media (min-width:768px) {
+  background: none;
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -67,22 +81,22 @@ exports[`FilterList component Should render 1`] = `
   cursor: pointer;
 }
 
-.c5:hover,
-.c5:active {
+.c6:hover,
+.c6:active {
   border-color: #CCCCCC;
 }
 
-.c5 * {
+.c6 * {
   -webkit-transition: all 200ms ease-in;
   transition: all 200ms ease-in;
   color: #888888;
 }
 
-.c5:hover * {
+.c6:hover * {
   color: #303030;
 }
 
-.c5 div:first-child {
+.c6 div:first-child {
   overflow: hidden;
   -webkit-flex: 0 0 0;
   -ms-flex: 0 0 0;
@@ -104,12 +118,6 @@ exports[`FilterList component Should render 1`] = `
     max-height: auto;
     overflow-y: visible;
     border: none;
-  }
-}
-
-@media (min-width:768px) {
-  .c1 {
-    background: none;
   }
 }
 
@@ -159,11 +167,11 @@ exports[`FilterList component Should render 1`] = `
     className="c4"
   >
     <div
-      className="c1"
+      className="c5"
       onClick={[Function]}
     >
       <div
-        className="c5"
+        className="c6"
         onClick={[Function]}
       >
         <div />
@@ -173,11 +181,11 @@ exports[`FilterList component Should render 1`] = `
       </div>
     </div>
     <div
-      className="c1"
+      className="c5"
       onClick={[Function]}
     >
       <div
-        className="c5"
+        className="c6"
         onClick={[Function]}
       >
         <div />

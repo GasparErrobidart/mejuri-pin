@@ -86,7 +86,7 @@ class FilterList extends React.Component{
   render(){
     let filterCount = this.props.filter.length
     let filterDisplay = (
-      <StyledFilterItem>
+      <StyledFilterItem clickeableBlock={true}>
         <Container>
           <FlexRow>
             <div onClick={this.toggleList}>

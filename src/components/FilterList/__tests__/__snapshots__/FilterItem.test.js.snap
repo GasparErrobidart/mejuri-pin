@@ -7,6 +7,10 @@ exports[`Renders "FilterItem" component 1`] = `
   border-top: 1px solid #F3F3F3;
 }
 
+.c0 cursor:default @media (min-width:768px) {
+  background: none;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -37,12 +41,6 @@ exports[`Renders "FilterItem" component 1`] = `
   -ms-flex: 0 0 0;
   flex: 0 0 0;
   height: 15px;
-}
-
-@media (min-width:768px) {
-  .c0 {
-    background: none;
-  }
 }
 
 <div

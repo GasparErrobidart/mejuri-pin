@@ -156,7 +156,7 @@ class Index extends React.Component{
             </ImageGrid>
             <Spy
               onProximity={this.loadMore.bind(this)}
-              proximityThreshold={100}>
+              proximityThreshold={500}>
               <HiddenBlock/>
             </Spy>
           </div>

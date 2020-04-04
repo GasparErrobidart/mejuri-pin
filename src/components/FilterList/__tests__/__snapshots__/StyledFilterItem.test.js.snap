@@ -7,10 +7,8 @@ exports[`Renders "StyledFilterItem" component 1`] = `
   border-top: 1px solid #F3F3F3;
 }
 
-@media (min-width:768px) {
-  .c0 {
-    background: none;
-  }
+.c0 cursor:default @media (min-width:768px) {
+  background: none;
 }
 
 <div
