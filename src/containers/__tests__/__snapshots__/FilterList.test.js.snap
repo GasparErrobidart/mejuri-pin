@@ -56,20 +56,14 @@ exports[`FilterList component Should render 1`] = `
   background: white;
   padding: 15px 0;
   border-top: 1px solid #F3F3F3;
-}
-
-.c1 cursor:pointer @media (min-width:768px) {
-  background: none;
+  cursor: pointer;
 }
 
 .c5 {
   background: white;
   padding: 15px 0;
   border-top: 1px solid #F3F3F3;
-}
-
-.c5 cursor:default @media (min-width:768px) {
-  background: none;
+  cursor: default;
 }
 
 .c6 {
@@ -118,6 +112,18 @@ exports[`FilterList component Should render 1`] = `
     max-height: auto;
     overflow-y: visible;
     border: none;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    background: none;
+  }
+}
+
+@media (min-width:768px) {
+  .c5 {
+    background: none;
   }
 }
 

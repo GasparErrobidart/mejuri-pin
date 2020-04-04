@@ -97,12 +97,12 @@ exports[`Index component Should render 1`] = `
   flex: 1 1 auto;
 }
 
-.c11 {
+.c12 {
   height: 1px;
   opacity: 0.0;
 }
 
-.c10 {
+.c11 {
   display: grid;
   grid-template-columns: repeat( auto-fit,minmax(20vh,40vh) );
   -webkit-box-pack: center;
@@ -120,7 +120,7 @@ exports[`Index component Should render 1`] = `
   align-content: start;
 }
 
-.c10 > * {
+.c11 > * {
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
@@ -189,9 +189,17 @@ exports[`Index component Should render 1`] = `
   background: white;
   padding: 15px 0;
   border-top: 1px solid #F3F3F3;
+  cursor: pointer;
 }
 
 .c9 {
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid #F3F3F3;
+  cursor: default;
+}
+
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -200,22 +208,22 @@ exports[`Index component Should render 1`] = `
   cursor: pointer;
 }
 
-.c9:hover,
-.c9:active {
+.c10:hover,
+.c10:active {
   border-color: #CCCCCC;
 }
 
-.c9 * {
+.c10 * {
   -webkit-transition: all 200ms ease-in;
   transition: all 200ms ease-in;
   color: #888888;
 }
 
-.c9:hover * {
+.c10:hover * {
   color: #303030;
 }
 
-.c9 div:first-child {
+.c10 div:first-child {
   overflow: hidden;
   -webkit-flex: 0 0 0;
   -ms-flex: 0 0 0;
@@ -224,7 +232,7 @@ exports[`Index component Should render 1`] = `
 }
 
 @media (min-width:768px) {
-  .c10 {
+  .c11 {
     margin: 40px;
     grid-gap: 40px;
   }
@@ -271,6 +279,12 @@ exports[`Index component Should render 1`] = `
 
 @media (min-width:768px) {
   .c6 {
+    background: none;
+  }
+}
+
+@media (min-width:768px) {
+  .c9 {
     background: none;
   }
 }
@@ -410,11 +424,11 @@ exports[`Index component Should render 1`] = `
             className="c8"
           >
             <div
-              className="c6"
+              className="c9"
               onClick={[Function]}
             >
               <div
-                className="c9"
+                className="c10"
                 onClick={[Function]}
               >
                 <div />
@@ -424,11 +438,11 @@ exports[`Index component Should render 1`] = `
               </div>
             </div>
             <div
-              className="c6"
+              className="c9"
               onClick={[Function]}
             >
               <div
-                className="c9"
+                className="c10"
                 onClick={[Function]}
               >
                 <div />
@@ -442,11 +456,11 @@ exports[`Index component Should render 1`] = `
       </div>
       <div>
         <div
-          className="c10"
+          className="c11"
         />
         <div>
           <div
-            className="c11"
+            className="c12"
           />
         </div>
       </div>

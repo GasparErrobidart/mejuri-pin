@@ -5,10 +5,13 @@ exports[`Renders "StyledFilterItem" component 1`] = `
   background: white;
   padding: 15px 0;
   border-top: 1px solid #F3F3F3;
+  cursor: default;
 }
 
-.c0 cursor:default @media (min-width:768px) {
-  background: none;
+@media (min-width:768px) {
+  .c0 {
+    background: none;
+  }
 }
 
 <div
