@@ -25,14 +25,16 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "postinstall": "npm run next:build",
+    "build": "npm run next:build",
     "next:dev": "next ./src/",
     "next:build": "next build ./src/",
     "next:start": "next start ./src/",
     "react:start": "react-scripts start",
     "start": "npm run next:start -- -p $PORT",
     "react:build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:watch" : "jest --watch",
+    "test": "jest",
+    "dev" : "npm run next:dev",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

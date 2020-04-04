@@ -4,6 +4,7 @@ exports[`Renders "RemoveFilterButton" component 1`] = `
 .c0 {
   color: #888888;
   margin-left: auto;
+  cursor: pointer;
 }
 
 <div
