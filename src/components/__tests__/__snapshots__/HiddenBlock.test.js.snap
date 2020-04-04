@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "HiddenBlock" component 1`] = `
+.c0 {
+  height: 1px;
+  opacity: 0.0;
+}
+
+<div
+  className="c0"
+>
+  HiddenBlock Test Text
+</div>
+`;

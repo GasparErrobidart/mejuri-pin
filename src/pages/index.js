@@ -21,7 +21,7 @@ import cleanProduct             from '../helpers/cleanProduct'
 // I HAND PICKED THIS CATEGORY FOR BOOTSTRAPING
 // SERVER SIDE RENDERING AS IT HAS 10 ITEMS WHICH ENOUGH FOR A CLIENT
 // WITH CONNECTIVITY ISSUES
-const magicCategoryId = "31"
+const defaultMagicCategoryId = "31"
 
 
 /*
@@ -87,7 +87,8 @@ class Index extends React.Component{
   getItemList(){
     let items = []
     let ids   = []
-    let remainingItems;
+    let remainingItems
+    const { magicCategoryId = defaultMagicCategoryId } = this.props
 
     if(this.props.filter.length === 0){
       // IF NO FILTER IS ACTIVE SHOW ALL PRODUCTS FOR ONE CATEGORY
@@ -183,7 +184,7 @@ Index.getInitialProps = async ({ store, isServer }) => {
   const data = await res.json()
 
   data.forEach( category =>{
-    if(category.id == magicCategoryId){
+    if(category.id == defaultMagicCategoryId){
       category.products.forEach( product =>{
           if(!product.categories) product.categories = []
           product.categories.push(category.id)

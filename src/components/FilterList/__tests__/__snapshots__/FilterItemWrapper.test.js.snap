@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "FilterItemWrapper" component 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.c0:hover,
+.c0:active {
+  border-color: #CCCCCC;
+}
+
+.c0 * {
+  -webkit-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  color: #888888;
+}
+
+.c0:hover * {
+  color: #303030;
+}
+
+.c0 div:first-child {
+  overflow: hidden;
+  -webkit-flex: 0 0 0;
+  -ms-flex: 0 0 0;
+  flex: 0 0 0;
+  height: 15px;
+}
+
+<div
+  className="c0"
+>
+  FilterItemWrapper Test Text
+</div>
+`;

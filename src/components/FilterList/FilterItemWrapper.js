@@ -4,12 +4,17 @@ const FilterItemWrapper = styled.div`
   display: flex;
   padding-left: 30px;
   &:hover,&:active{
-    border-color: ${({theme})=> theme.colors.middleGray}
+    border-color: ${({theme})=> theme.colors.middleGray};
   }
+  cursor:pointer;
 
   & *{
     transition: all 200ms ease-in;
-    color : ${({checked,theme}) => checked ? theme.colors.darkGray : theme.colors.darkMiddleGray}
+    color : ${({checked,theme}) => checked ? theme.colors.darkGray : theme.colors.darkMiddleGray};
+  }
+
+  &:hover *{
+    color : ${({checked,theme}) => theme.colors.darkGray };
   }
 
   & div:first-child{

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeartContainer component Should render 1`] = `
+.c0 {
+  font-family: 'Lato',sans-serif;
+  font-size: 30px;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+}
+
+.c0 *[animated-heart] {
+  color: red;
+  position: absolute;
+  opacity: 0;
+}
+
+.c0 *[animated-heart].animating {
+  -webkit-animation: pop 700ms;
+  animation: pop 700ms;
+}
+
+.c0 > span {
+  position: absolute;
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px;
+  font-weight: 400;
+  margin-left: 22px;
+  margin-top: 10px;
+  text-align: center;
+  border-radius: 2px;
+  background: #888888;
+  color: white;
+  left: 0;
+  top: 0;
+}
+
+<div
+  className="c0"
+  onClick={[Function]}
+>
+  <div
+    animated-heart="true"
+    className=""
+    onAnimationEnd={[Function]}
+  >
+    <svg
+      fill="none"
+      height="1em"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+      />
+    </svg>
+  </div>
+  <svg
+    fill="none"
+    height="1em"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    style={
+      Object {
+        "color": undefined,
+      }
+    }
+    viewBox="0 0 24 24"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+    />
+  </svg>
+  <span>
+    0
+  </span>
+</div>
+`;

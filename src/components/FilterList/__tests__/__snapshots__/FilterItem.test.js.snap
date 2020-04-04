@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "FilterItem" component 1`] = `
+.c0 {
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid #F3F3F3;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.c1:hover,
+.c1:active {
+  border-color: #CCCCCC;
+}
+
+.c1 * {
+  -webkit-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  color: #888888;
+}
+
+.c1:hover * {
+  color: #303030;
+}
+
+.c1 div:first-child {
+  overflow: hidden;
+  -webkit-flex: 0 0 0;
+  -ms-flex: 0 0 0;
+  flex: 0 0 0;
+  height: 15px;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    background: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+    <div>
+      FilterItem Test Text
+    </div>
+  </div>
+</div>
+`;

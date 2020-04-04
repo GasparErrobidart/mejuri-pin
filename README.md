@@ -30,15 +30,35 @@ Some of the strategies that were implemented regarding performance and UX:
 - Data transfer has been reduced as much as possible. For example by removing attributes that are not necessary.
 - Progressive Web Application (PWA): I used service workers for making most of the necessary assets required for offline rendering available.
 
+## Work log
+- Day 1 & 2 (10 - 12 hs total)
+  - Project setup
+  - HTML & CSS, mockup ready
+  - React & Redux implementation
+  - NextJS basic setup
+- Day 3 (7 hours)
+  - Server side rendering
+  - NextJS & Redux setup *(I took my time completing these first 2 items, because it was my firs time server rendering react and redux, so I had to learn it on the go.)*
+  - UI improvements
+  - Various optimizations (infinite scroll, code clean up, data transfer minimization, lazy loading images, etc.)
+- Day 4 (4 hours)
+  - Documentation
+  - Lighthouse report and minor optimizations
+  - Service workers setup (PWA)
+- Day 5 (4 hours)
+  - Final tweaks
+  - Focus on testing
+
 ## TODO
 
 - Implement HTTPS and HTTP2 for performance and security.
 - Add more icons and information to the PWA manifest.
-- Reduce the data requested to the API to the minimum. (+compression would be fantastic)
-- The filter UX can be improved by adding gestures, other interactions and better feedback.
+- Reduce the data requested to the API to the minimum. *(+compression would be fantastic)*
+- The filter UX can be improved: by adding gestures, other interactions and better feedback.
 - The infinite scroll is fine but for cases where the filter has a bunch of results it should implement pagination to not overflow the device memory with bitmaps and DOM elements in memory.
-- Persistent URL filters would minimize the amount of data requested and improve the UX. (These last 2 items could not be achieved because for an initial load it always needs all the categories to render the filter, with a real API it can be done)
-- The general UI can be improved further, many many details could be polished in terms of spacing, alignment and "responsiveness".
+- Persistent URL filters: would minimize the amount of data requested and improve the UX. (These last 2 items could not be achieved because for an initial load it always needs all the categories to render the filter, with a real API it can be done)
+- The general UI can be improved further: many many details could be polished in terms of spacing, alignment and "responsiveness".
+- Increase the test coverage: At the moment all components and container have a basic test for testing it renders properly using snapshots. For containers more logic heavy container components it's not enough. But a nice starting point is already in place each test file has a working setup using styled components mocking dependencies and redux store.
 
 
 # Mejuri PIN: the challenge

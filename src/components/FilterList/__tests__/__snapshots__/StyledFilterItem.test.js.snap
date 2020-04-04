@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "StyledFilterItem" component 1`] = `
+.c0 {
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid #F3F3F3;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    background: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  StyledFilterItem Test Text
+</div>
+`;

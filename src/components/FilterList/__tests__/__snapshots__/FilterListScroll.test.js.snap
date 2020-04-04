@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "FilterListScroll" component 1`] = `
+.c0 {
+  overflow-y: scroll;
+  max-height: 50vh;
+  border-top: 1px solid #F3F3F3;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    max-height: auto;
+    overflow-y: visible;
+    border: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  FilterListScroll Test Text
+</div>
+`;

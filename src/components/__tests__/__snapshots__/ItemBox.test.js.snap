@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "ItemBox" component 1`] = `
+.c2 {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 10px 10px;
+  margin: 10px;
+  color: #303030;
+  box-shadow: 0px 2px 4px #aaa;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+}
+
+.c2:hover,
+.c2:active,
+.c2.active {
+  box-shadow: 0px 0px 2px #aaa;
+  color: #888888;
+  background: #F3F3F3;
+}
+
+.c0 {
+  background: #FFFFFF;
+}
+
+.c0.animating {
+  -webkit-animation: pop-in 500ms;
+  animation: pop-in 500ms;
+}
+
+.c0 img {
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
+}
+
+.c0 img.picture-perfect-ready {
+  opacity: 1.0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 20px 20px 20px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 > *:last-child {
+  margin-top: 20px;
+}
+
+@media (min-width:768px) {
+  .c2 {
+    padding: 10px 30px;
+  }
+}
+
+<div
+  className="c0 animating"
+  onAnimationEnd={[Function]}
+>
+  <figure>
+    <img
+      alt="Spiral Earrings"
+      lazy-srcset="
+      https://dto508s2j2p46.cloudfront.net/system/spree/products/9869/mini/p52505557_Spiral_Earring_YG_both.png?1574627797 90w,
+      https://dto508s2j2p46.cloudfront.net/system/spree/products/9869/small/p52505557_Spiral_Earring_YG_both.png?1574627797 230w,
+      https://dto508s2j2p46.cloudfront.net/system/spree/products/9869/product/p52505557_Spiral_Earring_YG_both.png?1574627797 650w,
+      https://dto508s2j2p46.cloudfront.net/system/spree/products/9869/large/p52505557_Spiral_Earring_YG_both.png?1574627797 1500w
+    "
+      sizes="1vw"
+      src="/placeholder.png"
+    />
+    <div
+      className="c1"
+    >
+      <figcaption>
+        <h4>
+          Spiral Earrings
+        </h4>
+      </figcaption>
+      <div>
+        <div
+          className="c2"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+           
+          <span>
+            Like
+          </span>
+        </div>
+      </div>
+    </div>
+  </figure>
+</div>
+`;

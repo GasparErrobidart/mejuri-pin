@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders "Logo" component 1`] = `
+.c0 {
+  height: 50px;
+  padding: 5px 0;
+}
+
+.c0 > img {
+  height: 100%;
+  width: auto;
+}
+
+<div
+  className="c0"
+>
+  <img
+    alt="Mejuri Logo"
+    src="/mejuri.svg"
+  />
+</div>
+`;
